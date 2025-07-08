@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurasi Produk - Inert Gas Glove Box | JNS Industrial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #0d47a1; /* Biru Tua Korporat */
+            --secondary-color: #1565c0; /* Biru Menengah */
+            --accent-color: #00e676; /* Hijau Terang untuk Aksen Finansial/Aktif */
+            --light-gray: #f4f6f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-color: #212121;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header (Sama) */
+        .main-header {
+            background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .logo span { color: var(--secondary-color); }
+        .main-nav a { color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s ease; }
+        .main-nav a:hover, .main-nav a.active { color: var(--primary-color); }
+        
+        /* Layout Utama Halaman Produk */
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- FITUR KOMPLEKS 1: 360° IMAGE VIEWER --- */
+        .product-visuals {
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .viewer-360 {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 4 / 3;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            position: relative;
+            cursor: ew-resize; /* Cursor menandakan bisa di-drag horizontal */
+            overflow: hidden;
+            user-select: none; /* Mencegah seleksi teks saat drag */
+        }
+        .viewer-360 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+            pointer-events: none; /* Mencegah gambar di-drag */
+        }
+        .viewer-instructions {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Product Info & Configurator */
+        .product-details {
+            display: flex; flex-direction: column;
+        }
+        .product-details h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .product-sku {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        .product-description {
+            margin-bottom: 30px;
+        }
+
+        /* --- FITUR KOMPLEKS 2: PRODUCT CONFIGURATOR --- */
+        .configurator {
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 25px;
+            background-color: var(--light-gray);
+        }
+        .configurator h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        .config-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .config-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .config-option input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+        .option-price {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+        }
+
+        /* Total Price Section */
+        .total-price-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--medium-gray);
+            text-align: right;
+        }
+        .total-price-section .label {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .total-price-display {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: -1px;
+            animation: priceUpdate 0.5s ease;
+        }
+        @keyframes priceUpdate {
+            from { transform: scale(1.1); }
+            to { transform: scale(1); }
+        }
+        .cta-button {
+            background-color: var(--primary-color); color: #fff;
+            border: none; padding: 15px 40px; font-size: 1.1rem; font-weight: 600;
+            border-radius: 5px; cursor: pointer; text-decoration: none;
+            transition: all 0.3s ease; display: inline-block; margin-top: 15px;
+        }
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* --- FITUR KOMPLEKS 3: ACCORDION --- */
+        .extra-info-section {
+            grid-column: 1 / -1; /* Accordion membentang selebar 2 kolom */
+            margin-top: 40px;
+        }
+        .accordion-item {
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        .accordion-button {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 20px 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-button:hover {
+            background-color: var(--light-gray);
+        }
+        .accordion-button .icon::before {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+        .accordion-button.active .icon::before {
+            transform: rotate(45deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: var(--light-gray);
+        }
+        .accordion-content .content-inner {
+            padding: 0 20px 20px 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-layout { grid-template-columns: 1fr; }
+            .product-details h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="./portfolio-interview.html" class="logo">JNS<span>Industrial</span></a>
+            <nav class="main-nav">
+                <a href="./portfolio-interview.html">Home</a>
+                <a href="#" class="active">Produk</a>
+                <a href="#">Tentang Kami</a>
+                <a href="#">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-layout">
+            <div class="product-visuals">
+                <div id="viewer-360" class="viewer-360">
+                    <img id="viewer-image" src="https://via.placeholder.com/800x600/e0e0e0/000000?text=Frame_01" alt="Glove Box 360 View">
+                    </div>
+                <p class="viewer-instructions">Tahan dan geser gambar untuk memutar 360°</p>
+            </div>
+
+            <div class="product-details">
+                <h1>Inert Gas Glove Box - Series Pro</h1>
+                <p class="product-sku">SKU: JNS-GB-PRO-001</p>
+                <p class="product-description">Solusi terdepan untuk aplikasi ultra-sensitif. Ciptakan dan kelola lingkungan inert dengan presisi tinggi melalui sistem kontrol PLC terintegrasi dan fitur kustomisasi lengkap.</p>
+
+                <div class="configurator">
+                    <h3>Konfigurasi Produk Anda</h3>
+                    <div class="config-option">
+                        <label for="opt1"><input type="checkbox" id="opt1" data-price="15500000"> Sistem Purifikasi Otomatis</label>
+                        <span class="option-price">+ Rp 15.500.000</span>
+                    </div>
+                    <div class="config-option">
+                        <label for="opt2"><input type="checkbox" id="opt2" data-price="8750000"> Sensor Oksigen Tambahan</label>
+                        <span class="option-price">+ Rp 8.750.000</span>
+                    </div>
+                    <div class="config-option">
+                        <label for="opt3"><input type="checkbox" id="opt3" data-price="6200000"> Mikroskop Terintegrasi</label>
+                        <span class="option-price">+ Rp 6.200.000</span>
+                    </div>
+                    <div class="config-option">
+                        <label for="opt4"><input type="checkbox" id="opt4" data-price="11300000"> Pintu Antechamber Vakum</label>
+                        <span class="option-price">+ Rp 11.300.000</span>
+                    </div>
+                    
+                    <div class="total-price-section">
+                        <span class="label">Estimasi Harga Total:</span>
+                        <div id="total-price" class="total-price-display">Rp 125.000.000</div>
+                    </div>
+                     <a href="#" class="cta-button">Minta Penawaran Final</a>
+                </div>
+            </div>
+
+            <div class="extra-info-section">
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>Pertanyaan Umum (FAQ)</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="content-inner">
+                            <p><strong>T: Apa gas yang direkomendasikan?</strong><br>A: Kami merekomendasikan Argon (Ar) atau Nitrogen (N₂) dengan tingkat kemurnian 99.999% untuk hasil terbaik.</p>
+                             <p><strong>T: Bagaimana dengan garansi?</strong><br>A: Produk ini memiliki garansi servis dan suku cadang selama 2 tahun.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>Dokumen Teknis & Sertifikat</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                         <div class="content-inner">
+                            <ul>
+                                <li>Unduh Brosur Produk (PDF)</li>
+                                <li>Unduh Manual Pengguna (PDF)</li>
+                                <li>Sertifikat Kalibrasi ISO 9001</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- LOGIKA UNTUK PRODUCT CONFIGURATOR (Fitur 2) ---
+    const basePrice = 125000000;
+    const options = document.querySelectorAll('.config-option input[type="checkbox"]');
+    const totalPriceDisplay = document.getElementById('total-price');
+
+    function updatePrice() {
+        let currentTotal = basePrice;
+        options.forEach(option => {
+            if (option.checked) {
+                currentTotal += parseInt(option.dataset.price, 10);
+            }
+        });
+        
+        // Format angka ke format Rupiah
+        totalPriceDisplay.textContent = 'Rp ' + currentTotal.toLocaleString('id-ID');
+        totalPriceDisplay.style.animation = 'none';
+        void totalPriceDisplay.offsetWidth; // Memicu reflow
+        totalPriceDisplay.style.animation = 'priceUpdate 0.5s ease';
+    }
+
+    options.forEach(option => {
+        option.addEventListener('change', updatePrice);
+    });
+    
+    // Inisialisasi harga saat halaman dimuat
+    updatePrice();
+
+
+    // --- LOGIKA UNTUK 360° IMAGE VIEWER (Fitur 1) ---
+    const viewer = document.getElementById('viewer-360');
+    const image = document.getElementById('viewer-image');
+    const totalFrames = 36; // Jumlah gambar yang Anda miliki untuk 360 view
+    const imagePath = 'https://via.placeholder.com/800x600/e0e0e0/000000?text=Frame_'; // Ganti dengan path gambar Anda
+    
+    let isDragging = false;
+    let startX;
+    let currentFrame = 1;
+
+    // Preload images for smoother experience (opsional tapi sangat direkomendasikan)
+    for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        img.src = `${imagePath}${String(i).padStart(2, '0')}`;
+    }
+
+    function updateImage(frame) {
+        image.src = `${imagePath}${String(frame).padStart(2, '0')}`;
+    }
+
+    viewer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX;
+        viewer.style.cursor = 'grabbing';
+    });
+    
+    viewer.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX;
+    }, {passive: true});
+
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        viewer.style.cursor = 'ew-resize';
+    });
+    
+    window.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.pageX - startX;
+        // Ubah frame setiap pergerakan 15 pixel
+        if (Math.abs(deltaX) > 15) {
+            if (deltaX > 0) { // Geser ke kanan
+                currentFrame = (currentFrame % totalFrames) + 1;
+            } else { // Geser ke kiri
+                currentFrame = (currentFrame === 1) ? totalFrames : currentFrame - 1;
+            }
+            updateImage(currentFrame);
+            startX = e.pageX; // Reset posisi awal
+        }
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.touches[0].pageX - startX;
+        if (Math.abs(deltaX) > 15) {
+            if (deltaX > 0) {
+                currentFrame = (currentFrame % totalFrames) + 1;
+            } else {
+                currentFrame = (currentFrame === 1) ? totalFrames : currentFrame - 1;
+            }
+            updateImage(currentFrame);
+            startX = e.touches[0].pageX;
+        }
+    }, {passive: true});
+
+
+    // --- LOGIKA UNTUK ACCORDION (Fitur 3) ---
+    const accordionButtons = document.querySelectorAll('.accordion-button');
+    accordionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            button.classList.toggle('active');
+
+            if (button.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                content.style.maxHeight = '0px';
+            }
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk - Inert Gas Glove Box | JNS Industrial</title>
+    <style>
+        /* CSS Reset & Basic Styling (Sama seperti halaman utama) */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Titillium+Web:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d47a1; /* Biru Tua Korporat */
+            --secondary-color: #1976d2; /* Biru Lebih Terang */
+            --accent-color: #ffab00; /* Kuning untuk Aksen/CTA */
+            --light-gray: #f4f6f8;
+            --dark-gray: #333;
+            --text-color: #212121;
+            --border-color: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header (Konsisten dengan Halaman Utama) */
+        .main-header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none;
+            font-family: 'Titillium Web', sans-serif;
+        }
+        .logo span { color: var(--secondary-color); }
+        .main-nav a {
+            color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s ease;
+        }
+        .main-nav a:hover, .main-nav a.active { color: var(--primary-color); }
+        
+        /* Product Detail Section */
+        .product-detail-section {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-gallery {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .main-image-container {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden; /* Penting untuk efek zoom */
+            cursor: zoom-in;
+        }
+        
+        #main-product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.4s ease;
+        }
+        
+        .main-image-container:hover #main-product-image {
+            transform: scale(1.1);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            border-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(13, 71, 161, 0.4);
+        }
+
+        .product-info-details {
+            flex: 1;
+        }
+
+        .product-info-details h1 {
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .product-sku {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Tabs Section */
+        .tabs {
+            margin-top: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #888;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .tab-button.active { color: var(--primary-color); }
+        .tab-button.active::after { transform: scaleX(1); }
+
+        .tab-content {
+            padding-top: 20px;
+            animation: fadeInContent 0.5s;
+        }
+        @keyframes fadeInContent {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        
+        .tab-pane ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+        .tab-pane li { margin-bottom: 8px; }
+
+        /* Specification Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .spec-table th, .spec-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .spec-table tr:nth-child(even) { background-color: var(--light-gray); }
+        .spec-table th { font-weight: 600; color: var(--primary-color); }
+
+        /* Call to Action Button */
+        .cta-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--dark-gray);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #ffc107;
+            box-shadow: 0 4px 15px rgba(255, 171, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-gray);
+            color: #fff; text-align: center;
+            padding: 2rem 0; margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-detail-section { flex-direction: column; }
+            .product-info-details h1 { font-size: 1.8rem; }
+            .thumbnail { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="./portfolio-interview.html" class="logo">JNS<span>Industrial</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="product.html" class="active">Produk</a>
+                <a href="aboutme.html">Tentang Kami</a>
+                <a href="kontak.html">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-detail-section">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <img src="https://images.unsplash.com/photo-1581093583449-c14ce3a5a753?q=80&w=1932&auto=format&fit=crop" alt="Glove Box utama" id="main-product-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1581093583449-c14ce3a5a753?q=80&w=1932&auto=format&fit=crop" alt="Tampak depan" class="thumbnail active" data-image="https://images.unsplash.com/photo-1581093583449-c14ce3a5a753?q=80&w=1932&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1581092921462-69209a4a754a?q=80&w=2070&auto=format&fit=crop" alt="Detail panel kontrol" class="thumbnail" data-image="https://images.unsplash.com/photo-1581092921462-69209a4a754a?q=80&w=2070&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1581091224529-591a2a4a31a1?q=80&w=2070&auto=format&fit=crop" alt="Interior glove box" class="thumbnail" data-image="https://images.unsplash.com/photo-1581091224529-591a2a4a31a1?q=80&w=2070&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1580983218765-f6710de5e4a8?q=80&w=2070&auto=format&fit=crop" alt="Glove box dalam lab" class="thumbnail" data-image="https://images.unsplash.com/photo-1580983218765-f6710de5e4a8?q=80&w=2070&auto=format&fit=crop">
+                </div>
+            </div>
+
+            <div class="product-info-details">
+                <h1>Inert Gas Glove Box - Series A</h1>
+                <p class="product-sku">SKU: JNS-GB-001</p>
+                
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="deskripsi">Deskripsi</button>
+                        <button class="tab-button" data-tab="spesifikasi">Spesifikasi Teknis</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="deskripsi">
+                            <p>Glove box seri A adalah solusi canggih untuk aplikasi yang sangat sensitif terhadap udara dan kelembaban. Didesain untuk riset dan manufaktur, alat ini menciptakan lingkungan inert yang stabil menggunakan gas Argon atau Nitrogen.</p>
+                            <ul>
+                                <li>Sistem purifikasi gas otomatis untuk menjaga level O₂ dan H₂O < 1 ppm.</li>
+                                <li>Struktur stainless steel 304 yang kokoh dan mudah dibersihkan.</li>
+                                <li>Panel kontrol layar sentuh (touchscreen) yang intuitif.</li>
+                                <li>Antechamber besar untuk transfer material yang efisien.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" id="spesifikasi">
+                            <table class="spec-table">
+                                <tr><th>Material</th><td>Stainless Steel 304</td></tr>
+                                <tr><th>Dimensi Internal</th><td>1220 x 750 x 900 mm</td></tr>
+                                <tr><th>Gas Purifikasi</th><td>Argon / Nitrogen</td></tr>
+                                <tr><th>Tingkat Kebocoran</th><td>< 0.05 Vol%/h</td></tr>
+                                <tr><th>Kontrol</th><td>PLC dengan Layar Sentuh 7-inch</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <a href="#" class="cta-button">Minta Penawaran</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Prototipe oleh Kandidat. Dibuat untuk PT. Jaya Niaga Semesta.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Fitur Galeri Gambar Dinamis ---
+            const mainImage = document.getElementById('main-product-image');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // Ganti src gambar utama dengan src dari data-image thumbnail yang diklik
+                    mainImage.src = this.dataset.image;
+                    
+                    // Update class 'active'
+                    document.querySelector('.thumbnail.active').classList.remove('active');
+                    this.classList.add('active');
+
+                    // Menambahkan efek fade-in sederhana pada gambar utama saat berganti
+                    mainImage.style.animation = 'none';
+                    setTimeout(() => {
+                        mainImage.style.animation = '';
+                    }, 10);
+                    mainImage.style.animation = 'fadeInContent 0.5s ease-in-out';
+                });
+            });
+
+            // --- Fitur Tab Informasi Dinamis ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Hapus kelas 'active' dari semua tombol dan pane
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                    // Tambahkan kelas 'active' ke tombol dan pane yang sesuai
+                    this.classList.add('active');
+                    const tabId = this.dataset.tab;
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

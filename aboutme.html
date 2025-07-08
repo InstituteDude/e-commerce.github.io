@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - PT. Jaya Niaga Semesta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1565c0;
+            --light-gray: #f4f6f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-color: #212121;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Konsisten */
+        .main-header {
+            background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; padding: 0 20px;}
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .logo span { color: var(--secondary-color); }
+        .main-nav a { color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s ease; }
+        .main-nav a:hover, .main-nav a.active { color: var(--primary-color); }
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(rgba(13, 71, 161, 0.85), rgba(13, 71, 161, 0.85)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 60px 0;
+            text-align: center;
+            color: #fff;
+        }
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        /* Company Profile Section */
+        .profile-section {
+            padding: 60px 0;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        .profile-section .text-content {
+            flex: 1;
+        }
+        .profile-section .image-content {
+            flex: 1;
+            max-width: 450px;
+        }
+        .profile-section img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .profile-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .profile-section p {
+            margin-bottom: 20px;
+        }
+
+        /* Visi & Misi Section */
+        .vision-mission {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .vision-mission .card {
+            flex: 1;
+            padding: 25px;
+            background-color: var(--light-gray);
+            border-left: 5px solid var(--primary-color);
+        }
+        .vision-mission h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        .vision-mission ul {
+            list-style-type: none;
+        }
+        .vision-mission li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+        .vision-mission li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+
+        /* Team Section */
+        .team-section {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+        }
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .team-card {
+            background-color: #fff;
+            width: 280px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Awalnya transparan untuk efek fade-in */
+            transform: translateY(30px);
+        }
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .team-card .photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        .team-card .position {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* Animasi */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer Konsisten */
+        .main-footer {
+            background-color: var(--dark-gray);
+            color: #fff; text-align: center;
+            padding: 2rem 0; margin-top: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .profile-section { flex-direction: column-reverse; }
+        }
+         @media (max-width: 768px) {
+            .vision-mission { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="./portfolio-interview.html" class="logo">JNS<span>Industrial</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="product.html">Produk</a>
+                <a href="aboutme.html" class="active">Tentang Kami</a>
+                <a href="kontak.html">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Mitra Profesional Anda Sejak 2016</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="profile-section">
+            <div class="text-content">
+                <h2>PT. Jaya Niaga Semesta</h2>
+                <p>
+                    Didirikan pada tahun 2016 dan berlokasi di pusat industri kreatif Bandung, PT. Jaya Niaga Semesta telah tumbuh menjadi perusahaan profesional yang berfokus pada penyediaan peralatan dan mesin industri berkualitas tinggi di seluruh Indonesia.
+                </p>
+                <p>
+                    Kami berkomitmen untuk menjadi lebih dari sekadar pemasok. Kami adalah mitra strategis bagi kemajuan industri Anda, dengan menggandeng supplier-supplier berpengalaman untuk memastikan setiap produk yang kami tawarkan memiliki standar kualitas terbaik dan didukung oleh layanan purna jual yang handal.
+                </p>
+                <div class="vision-mission">
+                    <div class="card">
+                        <h3>Visi Kami</h3>
+                        <p>Menjadi mitra terdepan dan terpercaya dalam penyediaan solusi peralatan industri dan medis di Indonesia.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Misi Kami</h3>
+                        <ul>
+                            <li>Menawarkan produk berkualitas dari supplier terkemuka.</li>
+                            <li>Memberikan pelayanan purna jual yang responsif.</li>
+                            <li>Membangun hubungan jangka panjang dengan klien.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="image-content">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1784&auto=format&fit=crop" alt="Tim PT. Jaya Niaga Semesta sedang berdiskusi">
+            </div>
+        </section>
+    </div>
+
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Tim Profesional Kami</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format&fit=crop" alt="CEO" class="photo">
+                    <h3>Budi Santoso</h3>
+                    <p class="position">Founder & CEO</p>
+                    <p class="bio">Dengan pengalaman 15 tahun di bidang permesinan industri, Budi memimpin perusahaan dengan visi strategis.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop" alt="Head of Sales" class="photo">
+                    <h3>Citra Lestari</h3>
+                    <p class="position">Head of Sales</p>
+                    <p class="bio">Citra ahli dalam memahami kebutuhan klien dan memberikan solusi produk yang paling efektif dan efisien.</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=2071&auto=format&fit=crop" alt="Technical Support" class="photo">
+                    <h3>Agus Wijaya</h3>
+                    <p class="position">Lead Technical Support</p>
+                    <p class="bio">Memastikan setiap peralatan yang diterima klien berfungsi optimal melalui dukungan teknis yang prima.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Prototipe oleh Kandidat. Dibuat untuk PT. Jaya Niaga Semesta.</p>
+    </footer>
+
+<script>
+// --- EFEK FADE-IN SAAT SCROLL UNTUK KARTU TIM ---
+document.addEventListener('DOMContentLoaded', () => {
+    const teamCards = document.querySelectorAll('.team-card');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Jika elemen masuk ke dalam viewport
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Opsional: berhenti mengamati setelah animasi berjalan
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Animasi berjalan saat 10% elemen terlihat
+    });
+
+    teamCards.forEach(card => {
+        observer.observe(card);
+    });
+});
+</script>
+
+</body>
+</html>

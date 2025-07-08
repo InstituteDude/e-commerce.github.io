@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - PT. Jaya Niaga Semesta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #0d47a1;
+            --secondary-color: #1565c0;
+            --light-gray: #f4f6f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333;
+            --text-color: #212121;
+            --error-color: #d32f2f;
+            --success-color: #388e3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            background-color: var(--light-gray);
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Konsisten */
+        .main-header {
+            background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1rem 0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .main-header .container { display: flex; justify-content: space-between; align-items: center; padding: 0 20px;}
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .logo span { color: var(--secondary-color); }
+        .main-nav a { color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; transition: color 0.3s ease; }
+        .main-nav a:hover, .main-nav a.active { color: var(--primary-color); }
+
+        /* Judul Halaman */
+        .page-title {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #fff;
+        }
+        .page-title h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Layout Kontak */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Kolom Info Kontak */
+        .contact-info h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .info-item .icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 30px;
+            border: 1px solid var(--medium-gray);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Kolom Formulir Kontak */
+        .contact-form-container h2 {
+             font-size: 1.8rem;
+             color: var(--primary-color);
+             margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+        .form-group .error-message {
+            color: var(--error-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none; /* Sembunyi secara default */
+        }
+        .form-group.error input, .form-group.error textarea {
+            border-color: var(--error-color);
+        }
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #success-message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--success-color);
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            display: none; /* Sembunyi secara default */
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-gray);
+            color: #fff; text-align: center;
+            padding: 2rem 0; margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="./portfolio-interview.html" class="logo">JNS<span>Industrial</span></a>
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="product.html">Produk</a>
+                <a href="aboutme.html">Tentang Kami</a>
+                <a href="kontak.html" class="active">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <h1>Hubungi Kami</h1>
+    </section>
+
+    <div class="container">
+        <div class="contact-layout">
+            <div class="contact-info">
+                <h2>Informasi Kontak</h2>
+                <p>Kami siap membantu Anda. Hubungi kami melalui detail di bawah atau isi formulir di samping.</p>
+                <br>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <div class="text"><strong>Alamat:</strong><br>Jl. Industri No. 45, Kiaracondong<br>Bandung, Jawa Barat 40281</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📞</span>
+                    <div class="text"><strong>Telepon:</strong><br>(022) 731 1234</div>
+                </div>
+                <div class="info-item">
+                    <span class="icon">✉️</span>
+                    <div class="text"><strong>Email:</strong><br>info@jnsindustrial.com</div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31686.91896179978!2d107.6191221929314!3d-6.917463998244015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e63982998847%3A0x24711905a5e30a4c!2sBandung%2C%20Kota%20Bandung%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1678886543210!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h2>Kirim Pesan</h2>
+                <form id="contact-form" novalidate>
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message">Nama tidak boleh kosong.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Alamat Email</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message">Format email tidak valid.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subjek</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Pesan Anda</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <div class="error-message">Pesan tidak boleh kosong.</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                </form>
+                <div id="success-message">Terima kasih! Pesan Anda telah berhasil dikirim.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Prototipe oleh Kandidat. Dibuat untuk PT. Jaya Niaga Semesta.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah form mengirim data secara default
+        
+        if (validateForm()) {
+            // Jika validasi sukses
+            successMessage.style.display = 'block';
+            form.style.display = 'none'; // Sembunyikan form
+
+            // (Di proyek nyata, di sini Anda akan mengirim data ke server/API)
+
+            // Reset form setelah beberapa detik (opsional)
+            setTimeout(() => {
+                 successMessage.style.display = 'none';
+                 form.style.display = 'block';
+                 form.reset();
+            }, 5000); // Tampilkan pesan sukses selama 5 detik
+        }
+    });
+
+    function validateForm() {
+        let isValid = true;
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        // Validasi Nama
+        if (name.value.trim() === '') {
+            showError(name, 'Nama tidak boleh kosong.');
+            isValid = false;
+        } else {
+            clearError(name);
+        }
+
+        // Validasi Email
+        if (email.value.trim() === '') {
+            showError(email, 'Email tidak boleh kosong.');
+            isValid = false;
+        } else if (!isValidEmail(email.value)) {
+            showError(email, 'Format email tidak valid.');
+            isValid = false;
+        } else {
+            clearError(email);
+        }
+
+        // Validasi Pesan
+        if (message.value.trim() === '') {
+            showError(message, 'Pesan tidak boleh kosong.');
+            isValid = false;
+        } else {
+            clearError(message);
+        }
+
+        return isValid;
+    }
+
+    function showError(inputElement, message) {
+        const formGroup = inputElement.parentElement;
+        const errorDiv = formGroup.querySelector('.error-message');
+        
+        formGroup.classList.add('error');
+        errorDiv.textContent = message;
+    }
+
+    function clearError(inputElement) {
+        const formGroup = inputElement.parentElement;
+        formGroup.classList.remove('error');
+    }
+
+    function isValidEmail(email) {
+        // Regex sederhana untuk validasi email
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+});
+</script>
+
+</body>
+</html>

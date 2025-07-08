@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Jaya Niaga Semesta - Solusi Industri & Medis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling - Default Light Mode */
+        :root {
+            --background-light: #ffffff;
+            --card-background-light: #f9f9f9;
+            --text-color-light: #5d5d5d;
+            --heading-color-light: #2c3e50; /* Warna biru tua untuk judul */
+            --border-color-light: #e0e0e0;
+            --primary-color: #0d47a1; /* Biru korporat dari halaman lain */
+
+            --background-dark: #1a202c;
+            --card-background-dark: #2d3748;
+            --text-color-dark: #a0aec0;
+            --heading-color-dark: #e2e8f0;
+            --border-color-dark: #4a5568;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: var(--background-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            /* Ganti 'background.jpg' dengan gambar latar yang relevan (misal: mesin industri, lab bersih) */
+            background: linear-gradient(rgba(13, 71, 161, 0.8), rgba(13, 71, 161, 0.8)), url('https://images.unsplash.com/photo-1620755938829-252a94a2b926?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        header .logo-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px; }
+        header .logo-icon { width: 50px; height: 50px; background-color: #1976d2; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        header .logo-icon i { font-size: 24px; color: white; }
+        header .logo-text { font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+        header nav a { color: white; text-decoration: none; margin: 0 20px; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        header nav a:hover { color: #bbdefb; }
+
+
+        /* Hero Section */
+        .hero { background-color: var(--background-light); transition: background-color 0.3s, color 0.3s; text-align: center; padding: 80px 20px; }
+        .hero h1, .highlights h2 { color: var(--heading-color-light); transition: color 0.3s; }
+        .hero h1 { font-size: 2.5rem; line-height: 1.3; }
+        .hero p { max-width: 600px; margin: 20px auto 0; line-height: 1.6; }
+        
+        /* Highlights Section (Feature Cards) */
+        .highlights { padding-top: 40px; }
+        .highlights h2 { text-align: center; font-size: 2.2rem; margin-bottom: 20px; }
+        .highlights hr { border: 0; height: 1px; width: 80px; background-color: var(--border-color-light); margin: 0 auto 60px auto; transition: background-color 0.3s; }
+
+        .highlights-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 80px; /* Jarak antar baris highlight */
+        }
+
+        .highlight-card {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        /* Aturan untuk membalik posisi di baris genap */
+        .highlight-card:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .highlight-image {
+            flex: 1;
+            border-radius: 8px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .highlight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .highlight-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .highlight-content {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .highlight-content h3 {
+             color: var(--heading-color-light);
+             margin-top: 0;
+             font-size: 1.8rem;
+         }
+        
+        .highlight-content p {
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .highlight-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .highlight-content a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .highlight-card, .highlight-card:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+            }
+             .highlight-content {
+                text-align: center;
+            }
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .social-icons a { color: white; font-size: 22px; margin: 0 15px; transition: color 0.3s; }
+        .social-icons a:hover { color: #1976d2; }
+        .footer-text { margin-top: 30px; font-size: 14px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; max-width: 960px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #4a5568; }
+        .footer-bottom p { font-size: 12px; margin: 0; }
+
+        /* === DARK MODE STYLES === */
+        body.dark-mode { background-color: var(--background-dark); color: var(--text-color-dark); }
+        body.dark-mode .hero { background-color: var(--background-dark); }
+        body.dark-mode .hero h1, body.dark-mode .highlights h2, body.dark-mode .highlight-content h3 { color: var(--heading-color-dark); }
+        body.dark-mode .highlights hr { background-color: var(--border-color-dark); }
+        body.dark-mode .highlight-content a { color: #63b3ed; }
+
+
+        /* === TOGGLE SWITCH STYLES === */
+        .theme-switch-wrapper { display: flex; align-items: center; justify-content: center; }
+        .theme-switch { display: inline-block; height: 34px; position: relative; width: 60px; }
+        .theme-switch input { display:none; }
+        .slider { background-color: #555; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; }
+        .slider:before { background-color: #fff; bottom: 4px; content: ""; height: 26px; left: 4px; position: absolute; transition: .4s; width: 26px; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary-color); }
+        input:checked + .slider:before { transform: translateX(26px); }
+        .slider .fa-sun { position: absolute; right: 9px; top: 9px; color: #f0f0f0; opacity: 0; transition: opacity 0.4s; }
+        .slider .fa-moon { position: absolute; left: 9px; top: 9px; color: #f0f0f0; opacity: 1; transition: opacity 0.4s; }
+        input:checked + .slider .fa-sun { opacity: 1; }
+        input:checked + .slider .fa-moon { opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fas fa-industry"></i></div>
+            <span class="logo-text">JNS Industrial</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="product.html">Produk</a>
+            <a href="aboutme.html">Tentang Kami</a>
+            <a href="kontak.html">Kontak</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Kualitas & Presisi untuk Industri Indonesia</h1>
+        <p>PT. Jaya Niaga Semesta adalah mitra terpercaya Anda sejak 2016, menyediakan solusi peralatan industri dan medis berkualitas tinggi untuk mendorong kemajuan bisnis Anda.</p>
+    </section>
+
+    <section class="highlights container">
+        <h2>Fokus Utama Kami</h2>
+        <hr>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <div class="highlight-image">
+                    <img src="https://images.unsplash.com/photo-1581093583449-c14ce3a5a753?q=80&w=1932&auto=format&fit=crop" alt="Peralatan Glove Box">
+                </div>
+                <div class="highlight-content">
+                    <h3>Produk Unggulan</h3>
+                    <p>Kami menawarkan rangkaian produk pilihan, mulai dari *glove boxes* presisi hingga peralatan medis canggih. Setiap produk berasal dari supplier berpengalaman untuk menjamin kualitas dan keandalan.</p>
+                    <a href="product.html">Lihat Katalog Produk &rarr;</a>
+                </div>
+            </div>
+            <div class="highlight-card">
+                 <div class="highlight-image">
+                    <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=2070&auto=format&fit=crop" alt="Dukungan teknis dan layanan pelanggan">
+                </div>
+                <div class="highlight-content">
+                    <h3>Layanan & Dukungan Teknis</h3>
+                    <p>Kami lebih dari sekadar penjual. Kami adalah partner Anda. Tim kami siap memberikan layanan purna jual dan dukungan teknis yang responsif untuk memastikan operasional Anda berjalan lancar.</p>
+                    <a href="kontak.html">Hubungi Tim Support &rarr;</a>
+                </div>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-image">
+                    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1887&auto=format&fit=crop" alt="Tim profesional PT. JNS">
+                </div>
+                <div class="highlight-content">
+                    <h3>Tentang Perusahaan</h3>
+                    <p>Berdiri di Bandung sejak 2016, tim profesional kami berdedikasi untuk memajukan industri di Indonesia melalui produk dan layanan terbaik. Kenali lebih jauh perjalanan dan komitmen kami.</p>
+                    <a href="aboutme.html">Pelajari Lebih Lanjut &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="mailto:info@jnsindustrial.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="footer-text">© 2025 PT. Jaya Niaga Semesta. Seluruh Hak Cipta Dilindungi.</p>
+        <div class="footer-bottom">
+            <p>Solusi Industri Terpercaya</p>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('checkbox');
+        const applyTheme = (isDarkMode) => {
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                themeToggle.checked = true;
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeToggle.checked = false;
+            }
+        };
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (savedTheme === 'dark') { applyTheme(true); } 
+        else if (savedTheme === 'light') { applyTheme(false); } 
+        else { applyTheme(prefersDark); }
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+
+</body>
+</html>
